@@ -1,0 +1,24 @@
+{
+  "name": "gst-states",
+  "version": "1.0.0",
+  "description": "India GST state codes",
+  "main": "index.json",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mohitmayank/gst-states.git"
+  },
+  "keywords": [
+    "India",
+    "GST",
+    "States"
+  ],
+  "author": "Mohit Jain",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mohitmayank/gst-states/issues"
+  },
+  "homepage": "https://github.com/mohitmayank/gst-states#readme"
+}
