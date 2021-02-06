@@ -4,7 +4,18 @@
   "description": "India GST state codes",
   "main": "index.json",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo no-test",
+    "lint": "run-s lint:prettier:check",
+    "lint:fix": "run-s lint:prettier:fix",
+    "lint:prettier:check": "prettier --check \"**/*.{css,html,js,json,jsx,md,sass,scss,ts,tsx,vue,yaml,yml}\"",
+    "lint:prettier:fix": "prettier --write \"**/*.{css,html,js,json,jsx,md,sass,scss,ts,tsx,vue,yaml,yml}\"",
+    "commit": "git-cz",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
+    "changelog:reset": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
+    "prerelease": "run-s lint test",
+    "release-it": "release-it",
+    "release": "run-s \"release-it -- --ci --git.requireBranch=master {1}\" --",
+    "release:canary": "run-s \"release-it -- {2} --preRelease={1} --ci\" -- "
   },
   "repository": {
     "type": "git",
@@ -20,5 +31,56 @@
   "bugs": {
     "url": "https://github.com/refrens/gst-states/issues"
   },
-  "homepage": "https://github.com/refrens/gst-states#readme"
+  "homepage": "https://github.com/refrens/gst-states#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "@release-it/conventional-changelog": "^2.0.0",
+    "commitiquette": "^1.0.9",
+    "commitizen": "^4.2.3",
+    "conventional-changelog-cli": "^2.1.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "husky": "^4.3.8",
+    "lint-staged": "^10.5.4",
+    "npm-run-all": "^4.1.5",
+    "post-merge-install": "^0.4.0",
+    "prettier": "^2.2.1",
+    "release-it": "^14.3.0"
+  },
+  "husky": {
+    "hooks": {
+      "post-merge": "post-merge-install",
+      "post-rebase": "post-merge-install",
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "**/*.{js,ts,tsx,mjs}": [
+      "prettier --write"
+    ],
+    "**/*.{json,css,html,md,sass,scss,vue,yaml,yml}": [
+      "prettier --write"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "commitiquette"
+    }
+  },
+  "release-it": {
+    "git": {
+      "commitMessage": "chore(release): v${version}",
+      "requireBranch": false
+    },
+    "github": {
+      "release": true
+    },
+    "plugins": {
+      "@release-it/conventional-changelog": {
+        "preset": "angular",
+        "infile": "CHANGELOG.md"
+      }
+    }
+  }
 }
