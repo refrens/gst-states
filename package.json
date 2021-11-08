@@ -48,7 +48,8 @@
     "post-merge-install": "^0.4.0",
     "prettier": "^2.3.0",
     "release-it": "^14.6.2",
-    "trim-newlines": "^4.0.2"
+    "trim-newlines": "^4.0.2",
+    "trim-off-newlines": "^1.0.3"
   },
   "husky": {
     "hooks": {
