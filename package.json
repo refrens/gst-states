@@ -1,6 +1,6 @@
 {
   "name": "gst-states",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "India GST state codes",
   "main": "index.json",
   "types": "index.d.ts",
