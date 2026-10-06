@@ -16,7 +16,7 @@
     "prerelease": "run-s lint test",
     "release-it": "release-it",
     "release": "run-s \"release-it -- --ci --git.requireBranch=master {1}\" --",
-    "release:canary": "run-s \"release-it -- {2} --preRelease={1} --ci\" -- "
+    "release:canary": "run-s \"release-it -- {2} --preRelease={1} --ci --no-git.requireBranch\" -- "
   },
   "repository": {
     "type": "git",
@@ -75,7 +75,7 @@
   "release-it": {
     "git": {
       "commitMessage": "chore(release): v${version}",
-      "requireBranch": false
+      "requireBranch": "master"
     },
     "github": {
       "release": true
@@ -85,6 +85,10 @@
         "preset": "angular",
         "infile": "CHANGELOG.md"
       }
+    },
+    "hooks": {
+      "before:init": "node scripts/guard-release.js ${version.isPreRelease}",
+      "before:bump": "node scripts/guard-release.js ${version}"
     }
   }
 }
