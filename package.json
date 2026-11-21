@@ -1,11 +1,21 @@
 {
-  "name": "gst-states",
+  "name": "@refrens/gst-states",
   "version": "2.1.1",
   "description": "India GST state codes",
   "main": "index.json",
   "types": "index.d.ts",
+  "files": [
+    "index.json",
+    "index.d.ts",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "scripts": {
-    "test": "echo no-test",
+    "test": "node --test \"test/**/*.test.js\"",
     "lint": "run-s lint:prettier:check",
     "lint:fix": "run-s lint:prettier:fix",
     "lint:prettier:check": "prettier --check \"**/*.{css,html,js,json,jsx,md,sass,scss,ts,tsx,vue,yaml,yml}\"",
@@ -20,7 +30,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/refrens/gst-states.git"
+    "url": "git+ssh://git@github.com/refrens/gst-states.git"
   },
   "keywords": [
     "India",
@@ -89,6 +99,10 @@
     "hooks": {
       "before:init": "node scripts/guard-release.js ${version.isPreRelease}",
       "before:bump": "node scripts/guard-release.js ${version}"
+    },
+    "npm": {
+      "timeout": 10000,
+      "skipChecks": true
     }
   }
 }
